@@ -11,6 +11,8 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import java.util.Optional;
+
 @ExtendWith(SpringExtension.class)
 @ActiveProfiles("test")
 @DataJpaTest
@@ -55,6 +57,46 @@ public class BookRepositoryTest {
 
         //Verificação
         Assertions.assertThat(exists).isFalse();
+    }
+
+    @Test
+    @DisplayName("Deve obter um livro por id")
+    public void findByIdTest() {
+        //Cenário
+        Book book = Book.builder().title("As aventuras de Pitica").author("Pablo").isbn("2450").build();
+        entityManager.persist(book);
+
+        //Execução
+       Optional<Book> foundBook = repository.findById(book.getId());
+
+       //Verificação
+        Assertions.assertThat(foundBook.isPresent()).isTrue();
+
+    }
+
+    @Test
+    @DisplayName("Deve salvar um livro")
+    public void saveBookTest() {
+        Book book = Book.builder().title("As aventuras de Pitica").author("Pablo").isbn("2450").build();
+        Book savedBook = repository.save(book);
+
+        Assertions.assertThat(savedBook.getId()).isNotNull();
+    }
+
+    @Test
+    @DisplayName("Deve deletar um livro")
+    public void deleteBookTest() {
+        Book book = Book.builder().title("As aventuras de Pitica").author("Pablo").isbn("2450").build();
+        entityManager.persist(book);
+
+        Book foundBook = entityManager.find(Book.class, book.getId());
+
+        repository.delete(foundBook);
+
+        Book BookDetelete = entityManager.find(Book.class, book.getId());
+
+        Assertions.assertThat(BookDetelete).isNull();
+
     }
 
 
