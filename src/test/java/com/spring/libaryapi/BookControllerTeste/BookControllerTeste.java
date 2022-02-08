@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.spring.libaryapi.Dto.BookDTO;
 import com.spring.libaryapi.Exception.BusinessException;
 import com.spring.libaryapi.ModelEntity.Book;
+import com.spring.libaryapi.Resource.BookController;
 import com.spring.libaryapi.Service.BookService;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.DisplayName;
@@ -36,7 +37,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @ExtendWith(SpringExtension.class)
 @ActiveProfiles("test")
-@WebMvcTest
+@WebMvcTest(controllers = BookController.class)
 @AutoConfigureMockMvc
 public class BookControllerTeste {
 

@@ -2,6 +2,7 @@ package com.spring.libaryapi.Exceptions;
 
 import com.spring.libaryapi.Exception.BusinessException;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,6 +20,10 @@ public class ApiErrors {
 
     public ApiErrors(BusinessException ex) {
         this.errors = Arrays.asList(ex.getMessage());
+    }
+
+    public ApiErrors(ResponseStatusException ex) {
+        this.errors = Arrays.asList(ex.getReason());
     }
 
     public List<String> getErrors() {
