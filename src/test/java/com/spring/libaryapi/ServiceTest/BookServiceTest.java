@@ -1,4 +1,4 @@
-package com.spring.libaryapi.BookServiceTest;
+package com.spring.libaryapi.ServiceTest;
 
 import com.spring.libaryapi.Exception.BusinessException;
 import com.spring.libaryapi.ModelEntity.Book;
@@ -6,7 +6,6 @@ import com.spring.libaryapi.ModelRepository.BookRepository;
 import com.spring.libaryapi.Service.BookService;
 import com.spring.libaryapi.Service.impl.BookServiceImpl;
 import org.assertj.core.api.Assertions;
-import org.hibernate.mapping.Array;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
