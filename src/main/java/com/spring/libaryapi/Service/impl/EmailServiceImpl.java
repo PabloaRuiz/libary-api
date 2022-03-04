@@ -13,10 +13,10 @@ import java.util.List;
 @RequiredArgsConstructor
 public class EmailServiceImpl implements EmailService {
 
-    @Value("${application.mail.default-remetent}")
-    private String rementent;
+    private String rementent = "mail@libary-api.com";
 
     private final JavaMailSender javaMailSender;
+
 
     @Override
     public void sendMails(String message, List<String> mailList) {
