@@ -3,6 +3,7 @@ package com.spring.libaryapi.ControllerTeste;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.spring.libaryapi.Dto.BookDTO;
+import com.spring.libaryapi.Dto.ReturnedLoanDTO;
 import com.spring.libaryapi.Exception.BusinessException;
 import com.spring.libaryapi.ModelEntity.Book;
 import com.spring.libaryapi.Resource.BookController;
@@ -25,6 +26,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
@@ -37,7 +39,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ActiveProfiles("test")
 @WebMvcTest(controllers = BookController.class)
 @AutoConfigureMockMvc
-public class BookControllerTeste {
+public class BookControllerTest {
 
     static String BOOK_API = "/api/books";
 
