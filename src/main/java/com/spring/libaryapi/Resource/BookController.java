@@ -9,23 +9,23 @@ import com.spring.libaryapi.Service.BookService;
 import com.spring.libaryapi.Service.LoanService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/books")
 @Api("Book API")
+// @Slf4j  faz que a compilação da minha classe receba um objeto de log
 public class BookController {
 
     private final BookService service;
@@ -52,13 +52,11 @@ public class BookController {
 
     @GetMapping("{id}")
     @ApiOperation("Buscar Livro por Id")
-    public ResponseEntity<Optional<BookDTO>> get(@PathVariable Long id) {
-        if (service.getById(id).isPresent()) {
-            return ResponseEntity.ok().body(
-                    service.getById(id).map( book ->
-                            modelMapper.map(book, BookDTO.class)));
-        }
-        return ResponseEntity.notFound().build();
+    public BookDTO get(@PathVariable Long id) {
+        return service
+                .getById(id)
+                .map(book -> modelMapper.map(book, BookDTO.class))
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 
     }
 
