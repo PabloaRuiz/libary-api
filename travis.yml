@@ -1,12 +1,8 @@
 language: java
-sudo: true
+jdk:
+  - oraclejdk16
 dist: trusty
-jdk: oraclejdk9
-addons:
-  apt:
-    packages:
-      - oracle-java9-installer
 before_install:
   - chmod +x mvnw
-install:
-  - mvn -N io.takari:maven:wrapper
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
