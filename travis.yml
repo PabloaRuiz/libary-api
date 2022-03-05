@@ -1,6 +1,10 @@
 language: java
-jdk:
-  - oraclejdk16
+sudo: true
 dist: trusty
+jdk: oraclejdk16
+addons:
+  apt:
+    packages:
+      - oracle-java16-installer
 before_install:
   - chmod +x mvnw
