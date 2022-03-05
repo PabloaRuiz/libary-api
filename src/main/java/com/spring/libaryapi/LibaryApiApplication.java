@@ -16,21 +16,10 @@ import java.util.List;
 @EnableScheduling
 public class LibaryApiApplication {
 
-	@Autowired
-	private EmailService emailService;
 
 	@Bean
 	public ModelMapper modelMapper() {
 		return new ModelMapper();
-	}
-
-	@Bean
-	public CommandLineRunner runner() {
-		return args -> {
-			List<String> emails = Arrays.asList("db3ca0f2a0-1c3b60+1@inbox.mailtrap.io");
-			emailService.sendMails("Serviço de e-mail funcionando com sucesso!.", emails);
-			System.out.println("E-mail enviado com sucesso");
-		};
 	}
 
 

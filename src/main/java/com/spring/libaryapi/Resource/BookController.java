@@ -9,6 +9,7 @@ import com.spring.libaryapi.Service.BookService;
 import com.spring.libaryapi.Service.LoanService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
@@ -24,22 +25,15 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/books")
+@RequiredArgsConstructor
 @Api("Book API")
 // @Slf4j  faz que a compilação da minha classe receba um objeto de log
 public class BookController {
 
     private final BookService service;
-
     private final ModelMapper modelMapper;
-
     private final LoanService loanService;
 
-
-    public BookController(BookService service, ModelMapper modelMapper, LoanService loanService) {
-        this.service = service;
-        this.modelMapper = modelMapper;
-        this.loanService = loanService;
-    }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
